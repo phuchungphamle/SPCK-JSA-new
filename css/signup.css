@@ -1,0 +1,83 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.signup-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f0f0, #e0e8f0);
+    overflow: hidden;
+}
+
+.signup-container .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 2rem;
+}
+
+.signup-container h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.signup-container .form-label {
+    font-weight: 500;
+    color: #444;
+}
+
+.signup-container .form-control {
+    border-radius: 6px;
+    border-color: #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.signup-container .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.signup-container .form-check-label a {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.signup-container .form-check-label a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.signup-container .btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.signup-container .btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.signup-container a {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.signup-container a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .signup-container .card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}

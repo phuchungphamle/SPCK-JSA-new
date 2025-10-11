@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="View your baseball profile on Dugout." />
+    <title>Dugout - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+    <div class="sidebar d-flex flex-column" id="sidebar">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#" class="nav-link" id="searchLink"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a>
+        <a href="#" class="nav-link"><i class="fa-solid fa-compass"></i><span>Explore</span></a>
+        <a href="chat.html" class="nav-link"><i class="fa-solid fa-message"></i><span>Messages</span></a>
+        <a href="#" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a>
+        <a href="#" class="nav-link create-link">
+            <i class="fa-solid fa-square-plus"></i><span>Create</span>
+            <div class="popup-modal">
+                <div class="popup-content">
+                    <h2>Create New Post</h2>
+                    <div class="upload-box">📷🎥<br>Drag baseball content here</div>
+                    <button class="btn-select">Select from Device</button>
+                </div>
+            </div>
+        </a>
+        <a href="profile.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>Profile</span></a>
+        <a href="#" class="nav-link mt-auto"><i class="fa-solid fa-bars"></i><span>More</span></a>
+    </div>
+    <header class="header">
+        <div id="userInfo" class="user-info">
+            <span id="userName"></span>
+            <button onclick="logout()" class="btn btn-outline-danger btn-sm">Logout</button>
+        </div>
+    </header>
+    <div class="content">
+        <div class="row main-section">
+            <div class="col-lg-8">
+                <div class="profile-header">
+                    <div class="profile-img"></div>
+                    <div class="profile-info">
+                        <h2 id="profileUsername"></h2>
+                        <div class="btn-group">
+                            <button class="btn btn-outline-secondary btn-sm">Edit Profile</button>
+                            <button class="btn btn-outline-secondary btn-sm">View Archive</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-gear"></i></button>
+                        </div>
+                        <div class="profile-stats">
+                            <div><strong id="postCount">0</strong> posts</div>
+                            <div><strong id="followerCount">0</strong> followers</div>
+                            <div><strong id="followingCount">0</strong> following</div>
+                        </div>
+                        <div class="profile-name" id="profileName"></div>
+                    </div>
+                </div>
+                <div class="highlight-section">
+                    <div class="highlight-item text-center">
+                        <div class="highlight-circle">+</div>
+                        <div class="highlight-label">New</div>
+                    </div>
+                </div>
+                <div class="tab-section">
+                    <div class="tab active"><i class="fa fa-table-cells"></i> POSTS</div>
+                    <div class="tab"><i class="fa fa-bookmark"></i> SAVED</div>
+                    <div class="tab"><i class="fa fa-id-badge"></i> TAGGED</div>
+                </div>
+                <div id="profilePosts" class="feed-scroll"></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Following</h5>
+                        <ul class="list-group list-group-flush" id="friendList">
+                            <li class="list-group-item">John_DugoutFan</li>
+                            <li class="list-group-item">JaneBaseball</li>
+                            <li class="list-group-item">AlexPitcher</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="sticky-footer">
+        <p>Contact | Terms | Privacy | Dugout © 2025</p>
+        <div class="d-flex justify-content-center gap-3 mb-2">
+            <a href="#" class="text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-primary"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
+        </div>
+        <p class="footer-copyright">© 2025 Dugout Team - Last Updated: Oct 10, 2025, 06:47 PM +07</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>
