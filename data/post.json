@@ -1,0 +1,173 @@
+[
+    {
+        "id": 1,
+        "authorId": 1,
+        "authorName": "John_DugoutFan",
+        "avatar": "image/JSA img 1.jpg",
+        "content": "Epic home run today! #Baseball",
+        "images": [
+            "image/JSA img 3",
+            "image/JSA img 7",
+            "image/JSA img 2"
+        ],
+        "createdAt": "Oct 10, 2025, 06:00 PM",
+        "likes": 15,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 2
+    },
+    {
+        "id": 2,
+        "authorId": 2,
+        "authorName": "JaneBaseball",
+        "avatar": "image/JSA img 2.jpg",
+        "content": "Pitcher dominated the game! ⚾",
+        "images": [
+            "image/JSA img 1",
+            "image/JSA img 6"
+        ],
+        "createdAt": "Oct 10, 2025, 05:45 PM",
+        "likes": 22,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 1
+    },
+    {
+        "id": 3,
+        "authorId": 3,
+        "authorName": "AlexPitcher",
+        "avatar": "image/JSA img 3.jpg",
+        "content": "Training for tomorrow’s match! #Dugout",
+        "images": [
+            "image/JSA img 8",
+            "image/JSA img 5"
+        ],
+        "createdAt": "Oct 10, 2025, 12:00 PM",
+        "likes": 8,
+        "tags": [
+            "#Dugout"
+        ],
+        "commentsCount": 0
+    },
+    {
+        "id": 4,
+        "authorId": 4,
+        "authorName": "BaseballFan99",
+        "avatar": "image/JSA img 4.jpg",
+        "content": "Loved the double play! 🎉",
+        "images": [
+            "image/JSA img 9",
+            "image/JSA img 3"
+        ],
+        "createdAt": "Oct 10, 2025, 09:00 AM",
+        "likes": 10,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 3
+    },
+    {
+        "id": 5,
+        "authorId": 5,
+        "authorName": "currentUser",
+        "avatar": "image/JSA img 5.jpg",
+        "content": "My first home run post! #Baseball",
+        "images": [
+            "image/JSA img 4",
+            "image/JSA img 10"
+        ],
+        "createdAt": "Oct 10, 2025, 06:00 PM",
+        "likes": 15,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 1
+    },
+    {
+        "id": 6,
+        "authorId": 5,
+        "authorName": "currentUser",
+        "avatar": "image/JSA img 5.jpg",
+        "content": "Pitching practice today! ⚾",
+        "images": [
+            "image/JSA img 2",
+            "image/JSA img 8"
+        ],
+        "createdAt": "Oct 10, 2025, 05:45 PM",
+        "likes": 22,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 2
+    },
+    {
+        "id": 7,
+        "authorId": 5,
+        "authorName": "currentUser",
+        "avatar": "image/JSA img 5.jpg",
+        "content": "Game day prep! #Dugout",
+        "images": [
+            "image/JSA img 1",
+            "image/JSA img 6"
+        ],
+        "createdAt": "Oct 10, 2025, 12:00 PM",
+        "likes": 8,
+        "tags": [
+            "#Dugout"
+        ],
+        "commentsCount": 0
+    },
+    {
+        "id": 8,
+        "authorId": 1,
+        "authorName": "John_DugoutFan",
+        "avatar": "image/JSA img 1.jpg",
+        "content": "Another great game! ⚾",
+        "images": [
+            "image/JSA img 7",
+            "image/JSA img 3"
+        ],
+        "createdAt": "Oct 10, 2025, 03:00 PM",
+        "likes": 12,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 1
+    },
+    {
+        "id": 9,
+        "authorId": 2,
+        "authorName": "JaneBaseball",
+        "avatar": "image/JSA img 2.jpg",
+        "content": "Caught a foul ball today!",
+        "images": [
+            "image/JSA img 9",
+            "image/JSA img 4"
+        ],
+        "createdAt": "Oct 10, 2025, 02:30 PM",
+        "likes": 18,
+        "tags": [
+            "#Baseball"
+        ],
+        "commentsCount": 2
+    },
+    {
+        "id": 10,
+        "authorId": 3,
+        "authorName": "AlexPitcher",
+        "avatar": "image/JSA img 3.jpg",
+        "content": "Perfect pitch practice! 💪",
+        "images": [
+            "image/JSA img 5",
+            "image/JSA img 10"
+        ],
+        "createdAt": "Oct 10, 2025, 01:00 PM",
+        "likes": 9,
+        "tags": [
+            "#Dugout"
+        ],
+        "commentsCount": 1
+    }
+]

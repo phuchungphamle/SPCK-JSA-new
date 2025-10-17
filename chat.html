@@ -1,71 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Chat with baseball fans on Dugout." />
-    <title>Dugout - Messages</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/chat.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dugout Chat</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
-    <div class="sidebar d-flex flex-column" id="sidebar">
-        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="#" class="nav-link" id="searchLink"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a>
-        <a href="#" class="nav-link"><i class="fa-solid fa-compass"></i><span>Explore</span></a>
-        <a href="chat.html" class="nav-link"><i class="fa-solid fa-message"></i><span>Messages</span></a>
-        <a href="#" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a>
-        <a href="#" class="nav-link create-link">
-            <i class="fa-solid fa-square-plus"></i><span>Create</span>
-            <div class="popup-modal">
-                <div class="popup-content">
-                    <h2>Create New Post</h2>
-                    <div class="upload-box">📷🎥<br>Drag baseball content here</div>
-                    <button class="btn-select">Select from Device</button>
-                </div>
-            </div>
-        </a>
-        <a href="profile.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>Profile</span></a>
-        <a href="#" class="nav-link mt-auto"><i class="fa-solid fa-bars"></i><span>More</span></a>
+    <nav class="navbar">
+        <div class="logo">Dugout</div>
+        <a href="index.html">Home</a>
+    </nav>
+    <div class="content" id="chat-content">
+        <div class="chat-container" id="chat-messages">
+            <div class="skeleton" style="display: block;">Loading...</div>
+        </div>
+        <form id="chat-form" style="display: ${localStorage.getItem('loggedIn') === 'true' ? 'block' : 'none'}">
+            <textarea id="chat-input" placeholder="Type a message..."></textarea>
+            <button type="submit">Send</button>
+        </form>
     </div>
-    <div class="chat-container">
-        <aside class="friend-list">
-            <div class="friend">
-                <div class="info">
-                    <span class="name">John_DugoutFan</span>
-                    <span class="status online"><i class="fas fa-circle"></i> Online</span>
-                </div>
-            </div>
-            <div class="friend">
-                <div class="info">
-                    <span class="name">JaneBaseball</span>
-                    <span class="status offline"><i class="fas fa-circle"></i> Offline</span>
-                </div>
-            </div>
-        </aside>
-        <main class="chat-box">
-            <div class="chat-header">
-                <span class="chat-name">JaneBaseball</span>
-                <div class="chat-actions">
-                    <i class="fas fa-phone"></i>
-                    <i class="fas fa-video"></i>
-                </div>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="message message-left">Great game last night! (Oct 10, 2025, 06:30 PM)</div>
-                <div class="message message-right">Yeah, that home run was insane! (Oct 10, 2025, 06:31 PM)</div>
-                <div class="message message-left">Who’s your MVP? (Oct 10, 2025, 06:32 PM)</div>
-                <div class="message message-right">Definitely the pitcher! 💪 (Oct 10, 2025, 06:33 PM)</div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Type a message..." />
-                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </main>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="footer">
+        <p>&copy; 2025 Dugout</p>
+    </footer>
+    <script src="js/json.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/navbar.js"></script>
 </body>

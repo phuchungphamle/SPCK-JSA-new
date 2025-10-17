@@ -1,117 +1,66 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = localStorage.getItem("currentUser");
-    if (!currentUser) window.location.href = "login.html";
+const feed = document.getElementById('feed');
+const searchInput = document.getElementById('searchInput');
+const sortSelect = document.getElementById('sortSelect');
 
-    const userName = document.getElementById("userName");
-    if (userName) userName.textContent = currentUser;
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
 
-    // Load data from data.json
-    fetch('data.json')
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(data => {
-            const posts = data.posts;
-            localStorage.setItem("posts", JSON.stringify(posts));
+function renderPost(post) {
+    const postCard = document.createElement('div');
+    postCard.className = 'postcard';
+    postCard.innerHTML = `
+        <div class="post-header">
+            <img src="${post.avatar}" alt="${post.authorName}" class="avatar">
+            <span>${post.authorName}</span>
+            <span class="timestamp">${post.createdAt}</span>
+        </div>
+        <div class="post-content">${post.content}</div>
+        <div class="image-gallery">
+            ${post.images.map(img => `<img src="${img}.jpg" alt="Post image" class="post-image">`).join('')}
+        </div>
+        <div class="reaction-bar">
+            <span>Likes: ${post.likes}</span>
+            <a href="post-detail.html?id=${post.id}" class="detail-link">View Details</a>
+        </div>
+    `;
+    feed.appendChild(postCard);
+}
 
-            const postFeed = document.getElementById("postFeed");
-            const loadMore = document.getElementById("loadMore");
-            let currentPage = 0;
-            const itemsPerPage = 6;
+function filterAndSortPosts(posts, searchTerm, sortBy) {
+    let filtered = posts.filter(post =>
+        post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.authorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+    if (sortBy === 'newest') {
+        filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (sortBy === 'likes') {
+        filtered.sort((a, b) => b.likes - a.likes);
+    }
+    return filtered;
+}
 
-            const showSkeleton = (show) => {
-                const skeleton = document.getElementById("skeleton");
-                if (skeleton) skeleton.style.display = show ? "flex" : "none";
-            };
-
-            const debounce = (func, delay) => {
-                let timeout;
-                return (...args) => {
-                    clearTimeout(timeout);
-                    timeout = setTimeout(() => func.apply(null, args), delay);
-                };
-            };
-
-            const renderPosts = (postsToRender) => {
-                postFeed.innerHTML = "";
-                postsToRender.forEach(post => {
-                    const div = document.createElement("div");
-                    div.className = "postcard";
-                    let imageHTML = '';
-                    post.image.forEach(img => {
-                        imageHTML += `<img src="${img}" alt="${post.content}" class="post-image" />`;
-                    });
-                    div.innerHTML = `
-                        <div class="post-header">${post.username} <span class="timestamp">${post.timestamp}</span></div>
-                        <div class="post-content">${post.content}</div>
-                        <div class="image-gallery">${imageHTML}</div>
-                        <div class="reaction-bar">
-                            <div class="reaction-icons">
-                                <i class="fas fa-heart" onclick="likePost(${post.id})"></i>
-                                <i class="fas fa-comment"></i>
-                                <i class="fas fa-share"></i>
-                            </div>
-                            <div class="like-count">${post.likes} likes</div>
-                        </div>
-                    `;
-                    postFeed.appendChild(div);
-                });
-            };
-
-            const loadPosts = () => {
-                showSkeleton(true);
-                const allPosts = JSON.parse(localStorage.getItem("posts") || "[]");
-                const start = currentPage * itemsPerPage;
-                const end = start + itemsPerPage;
-                const paginatedPosts = allPosts.slice(start, end);
-                if (paginatedPosts.length > 0) {
-                    renderPosts(paginatedPosts);
-                    loadMore.style.display = end < allPosts.length ? "block" : "none";
-                } else {
-                    postFeed.innerHTML = "<div class='text-center text-muted'>No posts available</div>";
-                    loadMore.style.display = "none";
-                }
-                showSkeleton(false);
-            };
-
-            loadMore.addEventListener("click", () => {
-                currentPage++;
-                loadPosts();
-            });
-
-            const searchInput = document.createElement("input");
-            searchInput.type = "text";
-            searchInput.placeholder = "Search username or hashtag...";
-            searchInput.className = "form-control mb-3";
-            searchInput.style.width = "200px";
-            document.getElementById("searchLink").parentNode.insertBefore(searchInput, document.getElementById("searchLink").nextSibling);
-
-            const searchPosts = debounce((query) => {
-                showSkeleton(true);
-                const allPosts = JSON.parse(localStorage.getItem("posts") || "[]");
-                const filteredPosts = allPosts.filter(post =>
-                    post.username.toLowerCase().includes(query.toLowerCase()) ||
-                    post.content.toLowerCase().includes(query.toLowerCase())
-                );
-                renderPosts(filteredPosts.slice(0, itemsPerPage));
-                loadMore.style.display = filteredPosts.length > itemsPerPage ? "block" : "none";
-                showSkeleton(false);
-            }, 300);
-
-            searchInput.addEventListener("input", (e) => searchPosts(e.target.value));
-
-            window.likePost = (id) => {
-                const allPosts = JSON.parse(localStorage.getItem("posts") || "[]");
-                const post = allPosts.find(p => p.id === id);
-                if (post) {
-                    post.likes += 1;
-                    localStorage.setItem("posts", JSON.stringify(allPosts));
-                    loadPosts();
-                }
-            };
-
-            loadPosts();
-        })
-        .catch(error => console.error('Error loading data.json:', error));
+fetchJSON('data/posts.json').then(data => {
+    let posts = data.posts;
+    function updateFeed() {
+        feed.innerHTML = '';
+        const searchTerm = searchInput.value;
+        const sortBy = sortSelect.value;
+        const filteredPosts = filterAndSortPosts(posts, searchTerm, sortBy);
+        if (filteredPosts.length === 0) {
+            feed.innerHTML = '<p>No results found.</p>';
+        } else {
+            filteredPosts.forEach(renderPost);
+        }
+    }
+    searchInput.addEventListener('input', debounce(updateFeed, 300));
+    sortSelect.addEventListener('change', updateFeed);
+    updateFeed();
+}).catch(error => {
+    feed.innerHTML = '<p>Error loading posts. Please try again later.</p>';
 });

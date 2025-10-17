@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "John_DugoutFan",
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john@example.com",
+        "avatar": "image/JSA img 1.jpg",
+        "password": "Phuchung@2012"
+    },
+    {
+        "id": 2,
+        "name": "JaneBaseball",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "jane@example.com",
+        "avatar": "image/JSA img 2.jpg",
+        "password": "Phuchung@2012"
+    },
+    {
+        "id": 3,
+        "name": "AlexPitcher",
+        "firstName": "Alex",
+        "lastName": "Johnson",
+        "email": "alex@example.com",
+        "avatar": "image/JSA img 3.jpg",
+        "password": "Phuchung@2012"
+    },
+    {
+        "id": 4,
+        "name": "BaseballFan99",
+        "firstName": "Fan",
+        "lastName": "Brown",
+        "email": "fan@example.com",
+        "avatar": "image/JSA img 4.jpg",
+        "password": "Phuchung@2012"
+    },
+    {
+        "id": 5,
+        "name": "currentUser",
+        "firstName": "Current",
+        "lastName": "User",
+        "email": "current@example.com",
+        "avatar": "image/JSA img 5.jpg",
+        "password": "Phuchung@2012"
+    }
+]

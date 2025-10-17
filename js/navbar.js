@@ -1,70 +1,48 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.getElementById("sidebar");
-    let isExpanded = false;
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.querySelector('.navbar');
+    const loginLink = navbar.querySelector('a[href="login.html"]');
+    const signupLink = navbar.querySelector('a[href="signup.html"]');
+    const profileLink = navbar.querySelector('a[href="profile.html"]');
+    const chatLink = navbar.querySelector('a[href="chat.html"]');
 
-    // Toggle sidebar on click (outside nav links)
-    sidebar.addEventListener("click", (e) => {
-        if (!e.target.closest(".nav-link") && !e.target.closest(".popup-modal")) {
-            isExpanded = !isExpanded;
-            sidebar.classList.toggle("expanded", isExpanded);
-            updateLayout();
+    function updateNavbar() {
+        const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+        if (isLoggedIn) {
+            loginLink.style.display = 'none';
+            signupLink.style.display = 'none';
+            profileLink.style.display = 'inline-block';
+            chatLink.style.display = 'inline-block';
+        } else {
+            loginLink.style.display = 'inline-block';
+            signupLink.style.display = 'inline-block';
+            profileLink.style.display = 'none';
+            chatLink.style.display = 'none';
+        }
+    }
+
+    // Initial update
+    updateNavbar();
+
+    // Logout functionality (assumed on profile page, but can be added here)
+    profileLink.addEventListener('click', (e) => {
+        if (localStorage.getItem('loggedIn') === 'true') {
+            e.preventDefault();
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('userId');
+            updateNavbar();
+            window.location.href = 'index.html';
         }
     });
 
-    // Expand on hover
-    sidebar.addEventListener("mouseenter", () => {
-        sidebar.classList.add("expanded");
-        updateLayout();
+    // Add responsive toggle if needed (e.g., hamburger menu)
+    const hamburger = document.createElement('div');
+    hamburger.className = 'hamburger';
+    hamburger.innerHTML = '☰';
+    navbar.insertBefore(hamburger, navbar.firstChild);
+
+    hamburger.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        const navLinks = navbar.querySelectorAll('a, input, select');
+        navLinks.forEach(link => link.classList.toggle('active'));
     });
-
-    // Collapse on mouse leave if not locked
-    sidebar.addEventListener("mouseleave", () => {
-        if (!isExpanded) {
-            sidebar.classList.remove("expanded");
-            updateLayout();
-        }
-    });
-
-    // Popup handling for Create link
-    const createLink = sidebar.querySelector(".create-link");
-    const popupModal = sidebar.querySelector(".popup-modal");
-    createLink.addEventListener("mouseenter", () => {
-        if (sidebar.classList.contains("expanded")) {
-            popupModal.style.display = "block";
-        }
-    });
-
-    createLink.addEventListener("mouseleave", () => {
-        setTimeout(() => {
-            if (!popupModal.matches(":hover")) popupModal.style.display = "none";
-        }, 200);
-    });
-
-    popupModal.addEventListener("mouseenter", () => popupModal.style.display = "block");
-    popupModal.addEventListener("mouseleave", () => popupModal.style.display = "none");
-
-    // Update layout for content and header
-    const updateLayout = () => {
-        const content = document.querySelector(".content");
-        const header = document.querySelector(".header");
-        const leftOffset = sidebar.classList.contains("expanded") ? "240px" : "80px";
-        if (content) content.style.marginLeft = leftOffset;
-        if (header) header.style.left = leftOffset;
-    };
-
-    // Initial layout setup
-    updateLayout();
-
-    // Mobile toggle button (optional enhancement)
-    const toggleButton = document.createElement("button");
-    toggleButton.className = "btn btn-primary d-lg-none position-fixed";
-    toggleButton.style.top = "10px";
-    toggleButton.style.left = "10px";
-    toggleButton.innerHTML = '<i class="fa fa-bars"></i>';
-    toggleButton.addEventListener("click", () => {
-        isExpanded = !isExpanded;
-        sidebar.classList.toggle("expanded", isExpanded);
-        updateLayout();
-    });
-    document.body.appendChild(toggleButton);
 });
